@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Path2Learn School Recommendation | School Preference Form</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <style>
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes slideOut {
+      from { opacity: 1; transform: translateX(0); }
+      to { opacity: 0; transform: translateX(-50px); }
+    }
+    @keyframes pulse-glow {
+      0% { opacity: 0.8; }
+      50% { opacity: 1; box-shadow: 0 0 10px #00FFFF; }
+      100% { opacity: 0.8; }
+    }
+    .slide-in {
+      animation: slideIn 0.5s ease forwards;
+    }
+    .slide-out {
+      animation: slideOut 0.5s ease forwards;
+    }
+    .animate-pulse-glow {
+      animation: pulse-glow 2s ease infinite;
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #00FFFF, #00BFFF);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .form-card {
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid #00FFFF;
+      border-radius: 8px;
+    }
+    .form-card:hover {
+      box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+    }
+    select, input {
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid #00FFFF;
+      color: #00FFFF;
+    }
+    select:focus, input:focus {
+      outline: none;
+      border-color: #00BFFF;
+      box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+    }
+    ::selection {
+      background: #00BFFF;
+      color: #000000;
+    }
+    .summary-item {
+      background: rgba(0, 255, 255, 0.1);
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .summary-item:hover {
+      background: rgba(0, 255, 255, 0.2);
+      border-color: rgba(0, 255, 255, 0.5);
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-black text-cyan-400 font-sans">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 bg-black bg-opacity-95 z-50 border-b border-cyan-500">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <img src="t_i_mini_logo.png" alt="Path2Learn School Recommendation Logo" class="w-10 h-10 rounded-full object-cover mr-3 border border-cyan-400">
+        <h1 class="text-xl font-bold text-cyan-400 font-['Orbitron']">Path2Learn School Recommendation <span class="text-cyan-300 font-normal">by Tech Inspires</span></h1>
+      </div>
+      <a href="edc_index.html" class="text-cyan-400 hover:text-cyan-300 font-medium">
+        <i class="fas fa-arrow-left mr-2"></i> Back to Home
+      </a>
+    </div>
+  </header>
+
+  <!-- Multi-step Form -->
+  <section class="pt-32 pb-20 px-6">
+    <div class="container mx-auto max-w-3xl">
+      <h1 class="text-3xl md:text-4xl font-bold mb-2 text-center gradient-text">School Preferences</h1>
+      <p class="text-xl text-cyan-300 mb-8 text-center">Tell us what you're looking for in a school</p>
+      
+      <!-- Progress Steps -->
+      <div class="flex justify-between mb-12 relative">
+        <div class="absolute top-1/2 left-0 right-0 h-1 bg-cyan-900 -z-10"></div>
+        <div id="progress-bar" class="absolute top-1/2 left-0 h-1 bg-cyan-500 -z-10 transition-all duration-500" style="width: 16.66%"></div>
+        
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-cyan-500 text-black flex items-center justify-center font-bold mb-2 animate-pulse-glow">1</div>
+          <span class="text-xs text-cyan-300">Academic</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-cyan-900 text-cyan-400 flex items-center justify-center font-bold mb-2">2</div>
+          <span class="text-xs text-cyan-500">Gender</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-cyan-900 text-cyan-400 flex items-center justify-center font-bold mb-2">3</div>
+          <span class="text-xs text-cyan-500">Ownership</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-cyan-900 text-cyan-400 flex items-center justify-center font-bold mb-2">4</div>
+          <span class="text-xs text-cyan-500">Location</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-cyan-900 text-cyan-400 flex items-center justify-center font-bold mb-2">5</div>
+          <span class="text-xs text-cyan-500">Religion</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-cyan-900 text-cyan-400 flex items-center justify-center font-bold mb-2">6</div>
+          <span class="text-xs text-cyan-500">Summary</span>
+        </div>
+      </div>
+
+      <!-- Form Steps -->
+      <form id="school-form" class="space-y-8">
+        <!-- Step 1: Academic Program -->
+        <div id="step-1" class="form-card p-8 slide-in">
+          <h2 class="text-2xl font-bold mb-6 text-cyan-300 border-b border-cyan-500 pb-2">Academic & Education Program</h2>
+          
+          <div class="mb-6">
+            <label class="block text-cyan-300 mb-3">Select Program</label>
+            <div class="space-y-4">
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="program" value="REB" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400" checked>
+                <span>Rwandan General Education (REB Curriculum)</span>
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="program" value="CIE" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400">
+                <span>Cambridge International Education (CIE)</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="flex justify-end">
+            <button type="button" onclick="nextStep(2)" class="bg-cyan-500 hover:bg-cyan-400 text-black px-6 py-2 rounded-full font-medium transition-colors">
+              Next <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Gender Policy -->
+        <div id="step-2" class="form-card p-8 hidden">
+          <h2 class="text-2xl font-bold mb-6 text-cyan-300 border-b border-cyan-500 pb-2">Gender Policy</h2>
+          
+          <div class="mb-6">
+            <label class="block text-cyan-300 mb-3">Select Gender Policy</label>
+            <div class="space-y-4">
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="gender_policy" value="mixed" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400" checked>
+                <span>Mixed</span>
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="gender_policy" value="boys" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400">
+                <span>Boys Only</span>
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="gender_policy" value="girls" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400">
+                <span>Girls Only</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="flex justify-between">
+            <button type="button" onclick="prevStep(1)" class="text-cyan-400 hover:text-cyan-300 font-medium">
+              <i class="fas fa-arrow-left mr-2"></i> Back
+            </button>
+            <button type="button" onclick="nextStep(3)" class="bg-cyan-500 hover:bg-cyan-400 text-black px-6 py-2 rounded-full font-medium transition-colors">
+              Next <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Ownership Type -->
+        <div id="step-3" class="form-card p-8 hidden">
+          <h2 class="text-2xl font-bold mb-6 text-cyan-300 border-b border-cyan-500 pb-2">Ownership Type</h2>
+          
+          <div class="mb-6">
+            <label class="block text-cyan-300 mb-3">Select Ownership Type</label>
+            <div class="space-y-4">
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="ownership" value="public" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400" checked>
+                <span>Public</span>
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="ownership" value="private" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400">
+                <span>Private</span>
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="ownership" value="religious" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400">
+                <span>Religious</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="flex justify-between">
+            <button type="button" onclick="prevStep(2)" class="text-cyan-400 hover:text-cyan-300 font-medium">
+              <i class="fas fa-arrow-left mr-2"></i> Back
+            </button>
+            <button type="button" onclick="nextStep(4)" class="bg-cyan-500 hover:bg-cyan-400 text-black px-6 py-2 rounded-full font-medium transition-colors">
+              Next <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Location -->
+        <div id="step-4" class="form-card p-8 hidden">
+          <h2 class="text-2xl font-bold mb-6 text-cyan-300 border-b border-cyan-500 pb-2">Location</h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <div>
+              <label class="block text-cyan-300 mb-2">Province</label>
+              <select id="province" name="province" class="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                <option value="">Select Province</option>
+                <option value="kigali">Kigali City</option>
+                <option value="southern">Southern Province</option>
+                <option value="western">Western Province</option>
+                <option value="northern">Northern Province</option>
+                <option value="eastern">Eastern Province</option>
+              </select>
+            </div>
+            
+            <div>
+              <label class="block text-cyan-300 mb-2">District</label>
+              <select id="district" name="district" class="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" disabled>
+                <option value="">Select District</option>
+              </select>
+            </div>
+            
+            <div>
+              <label class="block text-cyan-300 mb-2">Sector</label>
+              <select id="sector" name="sector" class="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" disabled>
+                <option value="">Select Sector</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-cyan-300 mb-2">Cell</label>
+              <select id="cell" name="cell" class="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500" disabled>
+                <option value="">Select Cell</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="flex justify-between">
+            <button type="button" onclick="prevStep(3)" class="text-cyan-400 hover:text-cyan-300 font-medium">
+              <i class="fas fa-arrow-left mr-2"></i> Back
+            </button>
+            <button type="button" onclick="nextStep(5)" class="bg-cyan-500 hover:bg-cyan-400 text-black px-6 py-2 rounded-full font-medium transition-colors">
+              Next <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 5: Religious Identity -->
+        <div id="step-5" class="form-card p-8 hidden">
+          <h2 class="text-2xl font-bold mb-6 text-cyan-300 border-b border-cyan-500 pb-2">Religious Identity</h2>
+          
+          <div class="mb-6">
+            <label class="block text-cyan-300 mb-3">Religious Affiliation (Optional)</label>
+            <div class="space-y-4">
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="religion" value="none" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400" checked>
+                <span>None</span>
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="religion" value="catholic" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400">
+                <span>Catholic</span>
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="religion" value="protestant" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400">
+                <span>Protestant</span>
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="religion" value="muslim" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400">
+                <span>Muslim</span>
+              </label>
+              <label class="flex items-center space-x-3 cursor-pointer">
+                <input type="radio" name="religion" value="adventist" class="form-radio text-cyan-500 border-cyan-400 focus:ring-cyan-400">
+                <span>Adventist</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="flex justify-between">
+            <button type="button" onclick="prevStep(4)" class="text-cyan-400 hover:text-cyan-300 font-medium">
+              <i class="fas fa-arrow-left mr-2"></i> Back
+            </button>
+            <button type="button" onclick="nextStep(6)" class="bg-cyan-500 hover:bg-cyan-400 text-black px-6 py-2 rounded-full font-medium transition-colors">
+              Review Selections <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 6: Summary -->
+        <div id="step-6" class="form-card p-8 hidden">
+          <h2 class="text-2xl font-bold mb-6 text-cyan-300 border-b border-cyan-500 pb-2">Review Your Preferences</h2>
+          <p class="text-cyan-300 mb-6">Please review your selections below. Click on any item to modify it.</p>
+          
+          <div id="summary-content" class="space-y-4 mb-8">
+            <!-- Summary content will be populated by JavaScript -->
+          </div>
+
+          <div class="bg-cyan-900 bg-opacity-30 p-4 rounded-lg mb-6">
+            <p class="text-cyan-300 text-sm">
+              <i class="fas fa-info-circle mr-2"></i>
+              You can modify any of your selections by clicking on the respective item above, or proceed to submit your preferences.
+            </p>
+          </div>
+          
+          <div class="flex justify-between">
+            <button type="button" onclick="prevStep(5)" class="text-cyan-400 hover:text-cyan-300 font-medium">
+              <i class="fas fa-arrow-left mr-2"></i> Back to Religion
+            </button>
+            <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-black px-6 py-2 rounded-full font-medium transition-colors">
+              <i class="fas fa-check mr-2"></i> Submit Preferences
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    // Comprehensive Rwanda location data structure
+    const rwandaLocations = {
+      kigali: {
+        name: "Kigali City",
+        districts: {
+          gasabo: {
+            name: "Gasabo",
+            sectors: {
+              bumbogo: {
+                name: "Bumbogo",
+                cells: ["Bumbogo", "Gitoki", "Mulindi", "Nkuzuzu", "Rugazi"]
+              },
+              gatsata: {
+                name: "Gatsata",
+                cells: ["Gasave", "Gatsata", "Nyagasambu", "Rusororo", "Shyorongi"]
+              },
+              gikomero: {
+                name: "Gikomero",
+                cells: ["Bibare", "Gashenyi", "Gikomero", "Munyaga", "Rushashi"]
+              },
+              gisozi: {
+                name: "Gisozi",
+                cells: ["Cyahafi", "Gisozi", "Kageyo", "Kibaza", "Rusoro"]
+              },
+              jabana: {
+                name: "Jabana",
+                cells: ["Jabana", "Kinyami", "Rugando", "Rusiga", "Turi"]
+              },
+              jali: {
+                name: "Jali",
+                cells: ["Buremera", "Gakenke", "Jali", "Karuruma", "Shyondo"]
+              },
+              kacyiru: {
+                name: "Kacyiru",
+                cells: ["Kamatamu", "Kamutwa", "Kacyiru", "Kajevuba", "Kibagabaga"]
+              },
+              kimihurura: {
+                name: "Kimihurura",
+                cells: ["Biryogo", "Gisozi", "Kibagabaga", "Kimihurura", "Rugando"]
+              },
+              kimironko: {
+                name: "Kimironko",
+                cells: ["Bibare", "Kibagabaga", "Kimironko", "Nyarutarama", "Remera"]
+              },
+              kinyinya: {
+                name: "Kinyinya",
+                cells: ["Kagunga", "Kinyinya", "Rusororo", "Shyorongi", "Turi"]
+              },
+              ndera: {
+                name: "Ndera",
+                cells: ["Busanza", "Kinyami", "Ndera", "Shyorongi", "Turi"]
+              },
+              nduba: {
+                name: "Nduba",
+                cells: ["Cyamurembe", "Gatunda", "Kabeza", "Ndera", "Nduba"]
+              },
+              remera: {
+                name: "Remera",
+                cells: ["Gaculiro", "Kabuye", "Kinyinya", "Niboye", "Remera"]
+              },
+              rusororo: {
+                name: "Rusororo",
+                cells: ["Gakenke", "Kanserege", "Rusororo", "Rwaza", "Shyorongi"]
+              },
+              rutunga: {
+                name: "Rutunga",
+                cells: ["Kigabiro", "Rutunga", "Rwimbogo", "Shyorongi", "Turi"]
+              }
+            }
+          },
+          kicukiro: {
+            name: "Kicukiro",
+            sectors: {
+              gatenga: {
+                name: "Gatenga",
+                cells: ["Gatenga", "Kagarama", "Kicukiro", "Nyarugunga", "Rebero"]
+              },
+              gikondo: {
+                name: "Gikondo",
+                cells: ["Gikondo", "Kigarama", "Nyanza", "Sonatube", "Zindiro"]
+              },
+              kagarama: {
+                name: "Kagarama",
+                cells: ["Bweramana", "Kagarama", "Kanombe", "Kicukiro", "Niboye"]
+              },
+              kanombe: {
+                name: "Kanombe",
+                cells: ["Busanza", "Kanombe", "Nyarugunga", "Ruhuha", "Zindiro"]
+              },
+              kicukiro: {
+                name: "Kicukiro",
+                cells: ["Gahanga", "Kagarama", "Kicukiro", "Niboye", "Nyarugunga"]
+              },
+              kigarama: {
+                name: "Kigarama",
+                cells: ["Gikondo", "Kagarama", "Kigarama", "Niboye", "Zindiro"]
+              },
+              masaka: {
+                name: "Masaka",
+                cells: ["Cyahafi", "Kabuga", "Kinyambo", "Masaka", "Shyorongi"]
+              },
+              niboye: {
+                name: "Niboye",
+                cells: ["Gasave", "Kinyinya", "Niboye", "Nyarutarama", "Remera"]
+              },
+              nyarugunga: {
+                name: "Nyarugunga",
+                cells: ["Busoro", "Kanombe", "Nyarugunga", "Ruhuha", "Zindiro"]
+              }
+            }
+          },
+          nyarugenge: {
+            name: "Nyarugenge",
+            sectors: {
+              gitega: {
+                name: "Gitega",
+                cells: ["Biryogo", "Gitega", "Muhima", "Nyakabanda", "Nyamirambo"]
+              },
+              kanyinya: {
+                name: "Kanyinya",
+                cells: ["Kanyinya", "Kimisagara", "Muhima", "Nyakabanda", "Rugenge"]
+              },
+              kigali: {
+                name: "Kigali",
+                cells: ["Gikondo", "Kigali", "Kimisagara", "Muhima", "Nyarugenge"]
+              },
+              kimisagara: {
+                name: "Kimisagara",
+                cells: ["Kimisagara", "Muhima", "Nyakabanda", "Nyamirambo", "Rugenge"]
+              },
+              mageragere: {
+                name: "Mageragere",
+                cells: ["Gatenga", "Mageragere", "Nyanza", "Rebero", "Zindiro"]
+              },
+              muhima: {
+                name: "Muhima",
+                cells: ["Gitega", "Kigali", "Muhima", "Nyakabanda", "Rugenge"]
+              },
+              nyakabanda: {
+                name: "Nyakabanda",
+                cells: ["Kimisagara", "Muhima", "Nyakabanda", "Nyamirambo", "Rugenge"]
+              },
+              nyamirambo: {
+                name: "Nyamirambo",
+                cells: ["Biryogo", "Gitega", "Kimisagara", "Nyamirambo", "Rugenge"]
+              },
+              nyarugenge: {
+                name: "Nyarugenge",
+                cells: ["Kigali", "Kimisagara", "Nyarugenge", "Rwezamenyo", "Rugenge"]
+              },
+              rwezamenyo: {
+                name: "Rwezamenyo",
+                cells: ["Nyarugenge", "Rugenge", "Rwezamenyo", "Kigali", "Muhima"]
+              }
+            }
+          }
+        }
+      },
+      southern: {
+        name: "Southern Province",
+        districts: {
+          gisagara: {
+            name: "Gisagara",
+            sectors: {
+              gikonko: {
+                name: "Gikonko",
+                cells: ["Cyahinda", "Gikonko", "Muganza", "Rushubi", "Rwamiko"]
+              },
+              gishubi: {
+                name: "Gishubi",
+                cells: ["Gishubi", "Mubuga", "Muganza", "Rushubi", "Rwamiko"]
+              },
+              kansi: {
+                name: "Kansi",
+                cells: ["Kansi", "Kibilizi", "Mamba", "Muganza", "Ndora"]
+              },
+              kibilizi: {
+                name: "Kibilizi",
+                cells: ["Kansi", "Kibilizi", "Muganza", "Ndora", "Save"]
+              },
+              kigembe: {
+                name: "Kigembe",
+                cells: ["Kigembe", "Muganza", "Musha", "Ndora", "Save"]
+              },
+              mamba: {
+                name: "Mamba",
+                cells: ["Kansi", "Mamba", "Muganza", "Ndora", "Save"]
+              },
+              muganza: {
+                name: "Muganza",
+                cells: ["Gikonko", "Muganza", "Ndora", "Save", "Rushubi"]
+              },
+              mugombwa: {
+                name: "Mugombwa",
+                cells: ["Mugombwa", "Musha", "Ndora", "Nyanza", "Save"]
+              },
+              mukindo: {
+                name: "Mukindo",
+                cells: ["Mukindo", "Musha", "Ndora", "Nyanza", "Save"]
+              },
+              musha: {
+                name: "Musha",
+                cells: ["Mukindo", "Musha", "Ndora", "Nyanza", "Save"]
+              },
+              ndora: {
+                name: "Ndora",
+                cells: ["Muganza", "Ndora", "Nyanza", "Save", "Mukindo"]
+              },
+              nyanza: {
+                name: "Nyanza",
+                cells: ["Ndora", "Nyanza", "Save", "Mukindo", "Musha"]
+              },
+              save: {
+                name: "Save",
+                cells: ["Muganza", "Ndora", "Nyanza", "Save", "Mukindo"]
+              }
+            }
+          },
+          huye: {
+            name: "Huye",
+            sectors: {
+              gishamvu: {
+                name: "Gishamvu",
+                cells: ["Gishamvu", "Huye", "Karama", "Kinazi", "Maraba"]
+              },
+              huye: {
+                name: "Huye",
+                cells: ["Gishamvu", "Huye", "Kigoma", "Maraba", "Tumba"]
+              },
+              karama: {
+                name: "Karama",
+                cells: ["Gishamvu", "Karama", "Kinazi", "Maraba", "Rwaniro"]
+              },
+              kigoma: {
+                name: "Kigoma",
+                cells: ["Huye", "Kigoma", "Maraba", "Mbazi", "Tumba"]
+              },
+              kinazi: {
+                name: "Kinazi",
+                cells: ["Gishamvu", "Karama", "Kinazi", "Maraba", "Rwaniro"]
+              },
+              maraba: {
+                name: "Maraba",
+                cells: ["Gishamvu", "Huye", "Maraba", "Mbazi", "Tumba"]
+              },
+              mbazi: {
+                name: "Mbazi",
+                cells: ["Huye", "Maraba", "Mbazi", "Mukura", "Tumba"]
+              },
+              mukura: {
+                name: "Mukura",
+                cells: ["Mbazi", "Mukura", "Ngoma", "Ruhashya", "Simbi"]
+              },
+              ngoma: {
+                name: "Ngoma",
+                cells: ["Mukura", "Ngoma", "Ruhashya", "Rusatira", "Simbi"]
+              },
+              ruhashya: {
+                name: "Ruhashya",
+                cells: ["Mukura", "Ngoma", "Ruhashya", "Rusatira", "Rwaniro"]
+              },
+              rusatira: {
+                name: "Rusatira",
+                cells: ["Ngoma", "Ruhashya", "Rusatira", "Rwaniro", "Simbi"]
+              },
+              rwaniro: {
+                name: "Rwaniro",
+                cells: ["Karama", "Ruhashya", "Rusatira", "Rwaniro", "Simbi"]
+              },
+              simbi: {
+                name: "Simbi",
+                cells: ["Mukura", "Ngoma", "Rusatira", "Rwaniro", "Simbi"]
+              },
+              tumba: {
+                name: "Tumba",
+                cells: ["Huye", "Kigoma", "Maraba", "Mbazi", "Tumba"]
+              }
+            }
+          }
+        }
+      },
+      western: {
+        name: "Western Province",
+        districts: {
+          karongi: {
+            name: "Karongi",
+            sectors: {
+              bwishyura: {
+                name: "Bwishyura",
+                cells: ["Bwishyura", "Gashari", "Gitesi", "Rubengera", "Rugabano"]
+              },
+              gashari: {
+                name: "Gashari",
+                cells: ["Bwishyura", "Gashari", "Gitesi", "Rugabano", "Rwankuba"]
+              },
+              gitesi: {
+                name: "Gitesi",
+                cells: ["Bwishyura", "Gashari", "Gitesi", "Rugabano", "Rwankuba"]
+              },
+              murambi: {
+                name: "Murambi",
+                cells: ["Murambi", "Rubengera", "Rugabano", "Rwankuba", "Twumba"]
+              },
+              mutuntu: {
+                name: "Mutuntu",
+                cells: ["Mutuntu", "Rubengera", "Rugabano", "Rwankuba", "Twumba"]
+              },
+              rubengera: {
+                name: "Rubengera",
+                cells: ["Bwishyura", "Murambi", "Rubengera", "Rugabano", "Twumba"]
+              },
+              rugabano: {
+                name: "Rugabano",
+                cells: ["Gashari", "Murambi", "Rubengera", "Rugabano", "Rwankuba"]
+              },
+              ruganda: {
+                name: "Ruganda",
+                cells: ["Ruganda", "Rwankuba", "Twumba", "Murambi", "Mutuntu"]
+              },
+              rwankuba: {
+                name: "Rwankuba",
+                cells: ["Gashari", "Rugabano", "Ruganda", "Rwankuba", "Twumba"]
+              },
+              twumba: {
+                name: "Twumba",
+                cells: ["Murambi", "Ruganda", "Rwankuba", "Twumba", "Mutuntu"]
+              }
+            }
+          }
+        }
+      },
+      northern: {
+        name: "Northern Province",
+        districts: {
+          musanze: {
+            name: "Musanze",
+            sectors: {
+              busogo: {
+                name: "Busogo",
+                cells: ["Busogo", "Cyuve", "Gataraga", "Kinigi", "Muhoza"]
+              },
+              cyuve: {
+                name: "Cyuve",
+                cells: ["Busogo", "Cyuve", "Gataraga", "Kinigi", "Rwaza"]
+              },
+              gacaca: {
+                name: "Gacaca",
+                cells: ["Gacaca", "Gataraga", "Kinigi", "Muhoza", "Rwaza"]
+              },
+              gashaki: {
+                name: "Gashaki",
+                cells: ["Gashaki", "Gataraga", "Kinigi", "Muhoza", "Rwaza"]
+              },
+              gataraga: {
+                name: "Gataraga",
+                cells: ["Busogo", "Gataraga", "Kinigi", "Muhoza", "Rwaza"]
+              },
+              kinigi: {
+                name: "Kinigi",
+                cells: ["Busogo", "Gataraga", "Kinigi", "Muhoza", "Rwaza"]
+              },
+              muhoza: {
+                name: "Muhoza",
+                cells: ["Busogo", "Gataraga", "Kinigi", "Muhoza", "Rwaza"]
+              },
+              muko: {
+                name: "Muko",
+                cells: ["Muko", "Nyange", "Remera", "Rwaza", "Shingiro"]
+              },
+              musanze: {
+                name: "Musanze",
+                cells: ["Muhoza", "Musanze", "Nyange", "Remera", "Rwaza"]
+              },
+              nkotsi: {
+                name: "Nkotsi",
+                cells: ["Nkotsi", "Nyange", "Remera", "Rwaza", "Shingiro"]
+              },
+              nyange: {
+                name: "Nyange",
+                cells: ["Musanze", "Nkotsi", "Nyange", "Remera", "Shingiro"]
+              },
+              remera: {
+                name: "Remera",
+                cells: ["Musanze", "Nkotsi", "Nyange", "Remera", "Shingiro"]
+              },
+              rwaza: {
+                name: "Rwaza",
+                cells: ["Cyuve", "Gataraga", "Kinigi", "Muhoza", "Rwaza"]
+              },
+              shingiro: {
+                name: "Shingiro",
+                cells: ["Muko", "Nkotsi", "Nyange", "Remera", "Shingiro"]
+              }
+            }
+          }
+        }
+      },
+      eastern: {
+        name: "Eastern Province",
+        districts: {
+          rwamagana: {
+            name: "Rwamagana",
+            sectors: {
+              fumbwe: {
+                name: "Fumbwe",
+                cells: ["Fumbwe", "Gahengeri", "Karenge", "Muhazi", "Rubona"]
+              },
+              gahengeri: {
+                name: "Gahengeri",
+                cells: ["Fumbwe", "Gahengeri", "Karenge", "Muhazi", "Nyakariro"]
+              },
+              gishari: {
+                name: "Gishari",
+                cells: ["Gishari", "Karenge", "Muhazi", "Nyakariro", "Rubona"]
+              },
+              karenge: {
+                name: "Karenge",
+                cells: ["Fumbwe", "Gahengeri", "Karenge", "Muhazi", "Rubona"]
+              },
+              kigabiro: {
+                name: "Kigabiro",
+                cells: ["Kigabiro", "Muhazi", "Nyakariro", "Rubona", "Rwamagana"]
+              },
+              muhazi: {
+                name: "Muhazi",
+                cells: ["Gahengeri", "Karenge", "Kigabiro", "Muhazi", "Nyakariro"]
+              },
+              munyaga: {
+                name: "Munyaga",
+                cells: ["Munyaga", "Nyakariro", "Rubona", "Rwamagana", "Kigabiro"]
+              },
+              musha: {
+                name: "Musha",
+                cells: ["Musha", "Nyakariro", "Rubona", "Rwamagana", "Munyaga"]
+              },
+              nzige: {
+                name: "Nzige",
+                cells: ["Nzige", "Rubona", "Rwamagana", "Munyaga", "Musha"]
+              },
+              nyakariro: {
+                name: "Nyakariro",
+                cells: ["Gahengeri", "Kigabiro", "Muhazi", "Nyakariro", "Rubona"]
+              },
+              rubona: {
+                name: "Rubona",
+                cells: ["Karenge", "Kigabiro", "Nyakariro", "Rubona", "Rwamagana"]
+              },
+              rwamagana: {
+                name: "Rwamagana",
+                cells: ["Kigabiro", "Munyaga", "Nzige", "Rubona", "Rwamagana"]
+              }
+            }
+          }
+        }
+      }
+    };
+
+    // Form navigation
+    function nextStep(next) {
+      const current = next - 1;
+      
+      if (next === 6) {
+        updateSummary();
+      }
+      
+      document.getElementById(`step-${current}`).classList.add('slide-out');
+      
+      setTimeout(() => {
+        document.getElementById(`step-${current}`).classList.add('hidden');
+        document.getElementById(`step-${next}`).classList.remove('hidden');
+        document.getElementById(`step-${next}`).classList.add('slide-in');
+        updateProgress(next);
+      }, 500);
+    }
+    
+    function prevStep(prev) {
+      const current = prev + 1;
+      document.getElementById(`step-${current}`).classList.add('slide-out');
+      
+      setTimeout(() => {
+        document.getElementById(`step-${current}`).classList.add('hidden');
+        document.getElementById(`step-${prev}`).classList.remove('hidden');
+        document.getElementById(`step-${prev}`).classList.add('slide-in');
+        updateProgress(prev);
+      }, 500);
+    }
+    
+    function updateProgress(step) {
+      const progress = (step / 6) * 100;
+      document.getElementById('progress-bar').style.width = `${progress}%`;
+      
+      // Update step indicators
+      const steps = document.querySelectorAll('.flex.justify-between.mb-12 > div');
+      steps.forEach((stepEl, index) => {
+        const circle = stepEl.querySelector('div');
+        if (index + 1 < step) {
+          circle.classList.remove('bg-cyan-900', 'text-cyan-400');
+          circle.classList.add('bg-cyan-500', 'text-black');
+        } else if (index + 1 === step) {
+          circle.classList.remove('bg-cyan-900', 'text-cyan-400');
+          circle.classList.add('bg-cyan-500', 'text-black', 'animate-pulse-glow');
+        } else {
+          circle.classList.remove('bg-cyan-500', 'text-black', 'animate-pulse-glow');
+          circle.classList.add('bg-cyan-900', 'text-cyan-400');
+        }
+      });
+    }
+
+    function updateSummary() {
+      const summaryContainer = document.getElementById('summary-content');
+      
+      // Get form values
+      const program = document.querySelector('input[name="program"]:checked').value;
+      const genderPolicy = document.querySelector('input[name="gender_policy"]:checked').value;
+      const ownership = document.querySelector('input[name="ownership"]:checked').value;
+      const province = document.getElementById('province').value;
+      const district = document.getElementById('district').value;
+      const sector = document.getElementById('sector').value;
+      const cell = document.getElementById('cell').value;
+      const religion = document.querySelector('input[name="religion"]:checked').value;
+      
+      // Get display names
+      const getLocationName = (type, value) => {
+        if (type === 'province' && value) {
+          return rwandaLocations[value]?.name || value;
+        } else if (type === 'district' && province && value) {
+          return rwandaLocations[province]?.districts[value]?.name || value;
+        } else if (type === 'sector' && province && district && value) {
+          return rwandaLocations[province]?.districts[district]?.sectors[value]?.name || value;
+        } else if (type === 'cell' && province && district && sector && value) {
+          const cells = rwandaLocations[province]?.districts[district]?.sectors[sector]?.cells || [];
+          return cells.find(c => c.toLowerCase().replace(/\s+/g, '-') === value) || value;
+        }
+        return '';
+      };
+      
+      const summaryItems = [
+        {
+          title: "Academic Program",
+          value: program === 'REB' ? 'Rwandan General Education (REB Curriculum)' : 'Cambridge International Education (CIE)',
+          step: 1
+        },
+        {
+          title: "Gender Policy",
+          value: genderPolicy === 'mixed' ? 'Mixed' : genderPolicy === 'boys' ? 'Boys Only' : 'Girls Only',
+          step: 2
+        },
+        {
+          title: "Ownership Type",
+          value: ownership.charAt(0).toUpperCase() + ownership.slice(1),
+          step: 3
+        },
+        {
+          title: "Location",
+          value: [
+            getLocationName('province', province),
+            getLocationName('district', district),
+            getLocationName('sector', sector),
+            getLocationName('cell', cell)
+          ].filter(Boolean).join(' → ') || 'Not specified',
+          step: 4
+        },
+        {
+          title: "Religious Affiliation",
+          value: religion === 'none' ? 'None' : religion.charAt(0).toUpperCase() + religion.slice(1),
+          step: 5
+        }
+      ];
+      
+      summaryContainer.innerHTML = summaryItems.map(item => `
+        <div class="summary-item cursor-pointer transition-all hover:scale-105" onclick="goToStep(${item.step})">
+          <div class="flex justify-between items-center">
+            <div>
+              <h3 class="text-cyan-300 font-semibold mb-1">${item.title}</h3>
+              <p class="text-cyan-400">${item.value}</p>
+            </div>
+            <i class="fas fa-edit text-cyan-500"></i>
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    function goToStep(step) {
+      // Hide current step
+      document.getElementById('step-6').classList.add('slide-out');
+      
+      setTimeout(() => {
+        document.getElementById('step-6').classList.add('hidden');
+        document.getElementById(`step-${step}`).classList.remove('hidden');
+        document.getElementById(`step-${step}`).classList.add('slide-in');
+        updateProgress(step);
+      }, 500);
+    }
+
+    // Location cascade functionality
+    document.getElementById('province').addEventListener('change', function() {
+      const province = this.value;
+      const districtSelect = document.getElementById('district');
+      const sectorSelect = document.getElementById('sector');
+      const cellSelect = document.getElementById('cell');
+      
+      // Reset dependent dropdowns
+      districtSelect.innerHTML = '<option value="">Select District</option>';
+      sectorSelect.innerHTML = '<option value="">Select Sector</option>';
+      cellSelect.innerHTML = '<option value="">Select Cell</option>';
+      
+      districtSelect.disabled = !province;
+      sectorSelect.disabled = true;
+      cellSelect.disabled = true;
+      
+      if (province && rwandaLocations[province]) {
+        for (const [code, district] of Object.entries(rwandaLocations[province].districts)) {
+          const option = document.createElement('option');
+          option.value = code;
+          option.textContent = district.name;
+          districtSelect.appendChild(option);
+        }
+        districtSelect.disabled = false;
+      }
+    });
+
+    document.getElementById('district').addEventListener('change', function() {
+      const province = document.getElementById('province').value;
+      const district = this.value;
+      const sectorSelect = document.getElementById('sector');
+      const cellSelect = document.getElementById('cell');
+      
+      // Reset dependent dropdowns
+      sectorSelect.innerHTML = '<option value="">Select Sector</option>';
+      cellSelect.innerHTML = '<option value="">Select Cell</option>';
+      
+      sectorSelect.disabled = !district;
+      cellSelect.disabled = true;
+      
+      if (province && district && rwandaLocations[province]?.districts[district]) {
+        for (const [code, sector] of Object.entries(rwandaLocations[province].districts[district].sectors)) {
+          const option = document.createElement('option');
+          option.value = code;
+          option.textContent = sector.name;
+          sectorSelect.appendChild(option);
+        }
+        sectorSelect.disabled = false;
+      }
+    });
+
+    document.getElementById('sector').addEventListener('change', function() {
+      const province = document.getElementById('province').value;
+      const district = document.getElementById('district').value;
+      const sector = this.value;
+      const cellSelect = document.getElementById('cell');
+      
+      // Reset cell dropdown
+      cellSelect.innerHTML = '<option value="">Select Cell</option>';
+      cellSelect.disabled = !sector;
+      
+      if (province && district && sector && rwandaLocations[province]?.districts[district]?.sectors[sector]) {
+        const cells = rwandaLocations[province].districts[district].sectors[sector].cells;
+        cells.forEach(cell => {
+          const option = document.createElement('option');
+          option.value = cell.toLowerCase().replace(/\s+/g, '-');
+          option.textContent = cell;
+          cellSelect.appendChild(option);
+        });
+        cellSelect.disabled = false;
+      }
+    });
+
+    // Form submission
+    document.getElementById('school-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Collect form data
+      const formData = {
+        program: document.querySelector('input[name="program"]:checked').value,
+        gender_policy: document.querySelector('input[name="gender_policy"]:checked').value,
+        ownership: document.querySelector('input[name="ownership"]:checked').value,
+        province: document.getElementById('province').value,
+        district: document.getElementById('district').value,
+        sector: document.getElementById('sector').value,
+        cell: document.getElementById('cell').value,
+        religion: document.querySelector('input[name="religion"]:checked').value
+      };
+      
+      // Here you would typically send the data to a server
+      console.log('Form submitted:', formData);
+      alert('Preferences submitted successfully! You will be redirected to view matching schools.');
+      
+      // Redirect or show success message
+      // window.location.href = 'results.html';
+    });
+  </script>
+</body>
+</html>
